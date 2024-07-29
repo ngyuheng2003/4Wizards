@@ -1,0 +1,29 @@
+<script>
+
+// Change to make payment page
+function makePayment(button){
+  let row = button.parentNode.parentNode;
+  localStorage.setItem('invoice_id', row.cells[0].innerHTML);
+  localStorage.setItem('company_name', row.cells[1].innerHTML);
+  google.script.run.withSuccessHandler(nextPage).getScriptUrl();
+}
+
+function nextPage(value){
+  let url = value + "?v=invoices-payment";
+  open(url, "_top");
+}
+
+// Change to receipt list page
+function nextInvoicesList(button){
+  let row = button.parentNode.parentNode;
+  localStorage.setItem('invoice_id', row.cells[0].innerHTML);
+  localStorage.setItem('company_name', row.cells[1].innerHTML);
+  google.script.run.withSuccessHandler(nextInvoicePage).getScriptUrl();
+}
+
+function nextInvoicePage(value){
+  let url = value + "?v=receiptList";
+  open(url, "_top");
+}
+
+</script>

@@ -1,0 +1,25 @@
+<script>
+
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var currentTime = new Date();
+document.getElementById("datetime").innerHTML = "Today is " + currentTime.getDate() + " " + months[currentTime.getMonth()] + " " + currentTime.getFullYear();
+
+if(currentTime.getDate() - 25 == 0){
+  document.getElementById("dateleft").innerHTML = "Today is Payday";
+}
+else if(currentTime.getDate() - 25 < 0){
+  document.getElementById("dayleft").innerHTML = (25 - currentTime.getDate()) + " more day(s) till Payday";
+}
+else{
+  document.getElementById("dayleft").innerHTML = "Remember to complete payroll by the end of the month";
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById('employee-info').innerHTML = generateEmployeeInfoTable();
+      });
+
+      function viewDetails(employee) {
+        alert(`Employee Details:\n\nName: ${employee.Name}\nPosition: ${employee.Position}\nType: ${employee.Type}\nPayroll Status: ${employee.Status === 1 ? 'Paid' : employee.Status === 0 ? 'Unpaid' : 'On Hold'}`);
+      }
+
+</script>

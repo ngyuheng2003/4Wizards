@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include('home-css') ?>
+    <?!= include('invoices2-css') ?>
+    <?!= include('invoices3-css') ?>
+  </head>
+  <body style="justify-content: center; padding: 0; min-height: 100vh;">
+    <nav>
+        <div class="logo">
+            Finance Wizards
+        </div>
+        <div class="menu">
+            <a href="<?!= getScriptUrl()?>?v=index">Home</a>
+            <a href="<?!= getScriptUrl()?>?v=pp">Procurement</a>
+            <a href="<?!= getScriptUrl()?>?v=inventory">Inventory</a>
+            <a href="<?!= getScriptUrl()?>?v=invoices">Invoices</a>
+            <a href="<?!= getScriptUrl()?>?v=payroll">Payroll</a>
+            <a href="<?!= getScriptUrl()?>?v=profile">Profile</a>
+        </div>
+    </nav>
+    <div class="home-info" style="background-color: antiquewhite;">
+        <div>
+            <h2 id="datetime">Today is N/A</h2>
+            <p id="dayleft">N/A more days till Payday</p>
+        </div>
+    </div>
+    <h2 style="margin: 50px 50px 0 50px;">Create New Invoice</h2>
+    
+    <div style="display:flex; margin:0 auto;">
+      <form id="stripe-login">
+        <h3 style="margin: 50px 0px 0px 0px; ">Order information</h3>
+        <div class="field" style="margin: 20px 0px 0 0px;padding-bottom: 24px; display:inline-block; width: 100%;">
+          <div style="display:flex;">
+            <div style="width:20%;">
+              <label for="email">Product ID</label>
+              <input type="email" name="email">
+            </div>
+            <div style="width:50px"></div>
+            <div style="width:50%;">
+              <label for="email">Product Name</label>
+              <input type="email" name="email">
+            </div>
+            <div style="width:50px"></div>
+            <div style="width:20%;">
+              <label for="email">Quantity</label>
+              <input type="email" name="email">
+            </div>
+          </div>
+          <table id="orderInfoTable">
+          <thead>
+            <tr>
+                <th style="width: 12%;">Product ID</th>
+                <th>Product name</th>
+                <th style="width: 12%;">Price per unit (KG)</th>
+                <th style="width: 12%;">Quantity</th>
+                <th style="width: 12%;">Total</th>
+                <th style="width: 12%;">Remove</th>
+            </tr>
+            </thead>
+            <tbody id="employee-info">
+              <div>
+                <tr>
+                  <td colspan="6" style="text-align: center;">Add product by ID or name</td>
+                </tr>
+              </div>
+              <tr>
+                  <td colspan="4" style="text-align: center;">Total amount (RM)</td>
+                  <td colspan="2" style="text-align: center;">0.00</td>
+                </tr>
+              
+            </tbody>
+          
+        </table>
+        </div>
+        <h3 style="margin: 25px 0px 10px 0px;">Delivery Fees</h3>
+        <div class="field" style="margin: 20px 0px 0 0px;padding-bottom: 24px; display:inline-block; width: 100%;">
+          <div>
+            <label for="address">Tracking Number</label>
+            <input type="text" name="address">
+          </div>
+          <div style="display:flex;">
+            <div style="width:100%;">
+              <label for="address">Weight (KG)</label>
+              <input type="text" name="address">
+            </div>
+            <div style="width:100px"></div>
+            <div style="width:100%;">
+              <label for="address">Fees</label>
+              <input type="text" name="address">
+            </div>
+          </div>
+        </div>
+        <h3 style="margin: 25px 0px 10px 0px;">Additional information</h3>
+        <div class="field" style="margin: 20px 0px 0 0px;padding-bottom: 24px; display:inline-block;width: 100%;">
+          <div>
+            <label for="address">Remarks</label>
+            <input type="text" name="address">
+          </div>
+        </div>
+      </form>
+      
+    </div>
+
+    <div style="display:flex; margin: 50px">
+        <div style="display:flex; margin:0 auto">
+          <button id="update-button" style="display:flex; margin:0 15px" onclick="showUpdateContainer()">Preview invoice</button>
+          <a id="update-button" style="display:flex; margin:0 15px" href="<?!= getScriptUrl()?>?v=invoices">Back</a>
+        </div>
+      </div>
+    <div class="footer">
+        <p>4Wizards</p>
+        <p>@GoogleHackAPU</p>
+    </div>
+
+    <?!= include('payroll-script') ?>
+</body>
+</html>

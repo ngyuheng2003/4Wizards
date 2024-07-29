@@ -1,0 +1,29 @@
+<script>
+  function populateSupplierInfo() {
+    var supplier = document.getElementById('supplier').value;
+    console.log('Selected supplier:', supplier);
+
+    google.script.run.withSuccessHandler(function(data) {
+      console.log('Supplier data:', data);
+      document.getElementById('email').value = data.email;
+      document.getElementById('contact').value = data.contact;
+    }).getSuppliersInfo(supplier);
+  }
+
+  function toggleShippingAddress() {
+    var sameAddressCheckbox = document.getElementById('same-address');
+    var shippingFields = document.getElementById('shipping-address-fields');
+
+    if (sameAddressCheckbox.checked) {
+      google.script.run.withSuccessHandler(function(data) {
+        document.getElementById('address').value = data.address;
+        document.getElementById('city').value = data.city;
+        document.getElementById('postcode').value = data.postcode;
+        document.getElementById('province').value = data.province;
+        document.getElementById('country').value = data.country;
+      }).getCompanyAddress();
+    } else {
+      shippingFields.reset();
+    }
+  }
+</script>

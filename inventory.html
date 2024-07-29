@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base target="_top">
+  <?!= include('home-css') ?>
+  <?!= include('inventory-css') ?>
+</head>
+
+<body style="justify-content: center; padding: 0; min-height: 100vh;">
+  <nav>
+    <div class="logo">
+      Finance Wizards
+    </div>
+    <div class="menu">
+      <a href="<?!= getScriptUrl()?>?v=index">Home</a>
+      <a href="<?!= getScriptUrl()?>?v=pp">Procurement</a>
+      <a href="<?!= getScriptUrl()?>?v=inventory">Inventory</a>
+      <a href="<?!= getScriptUrl()?>?v=invoices">Invoices</a>
+      <a href="<?!= getScriptUrl()?>?v=payroll">Payroll</a>
+      <a href="<?!= getScriptUrl()?>?v=profile">Profile</a>
+    </div>
+  </nav>
+  <div class="home-info" style="background-color: antiquewhite;">
+    <div>
+      <h2 id="datetime">Today is N/A</h2>
+      <p id="dayleft">N/A more days till Payday</p>
+    </div>
+  </div>
+  <h2 style="margin: 50px 50px 0 50px;">Supplier</h2>
+  <div>
+    <table id="employeeInfoTable">
+      <thead>
+        <tr>
+          <th style="width: 15%;">Supplier ID</th>
+          <th>Supplier name</th>
+          <th style="width: 30%;">Address</th>
+          <th style="width: 12%;">Rating</th>
+          <th style="width: 12%;">Action</th>
+        </tr>
+      </thead>
+      <tbody id="inventory-info">
+        <tr>
+          <td colspan="5" style="text-align: center;">Loading data... Please wait</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="display:flex;">
+    <div id="button-area" style="display:flex; margin:0 auto">
+      <a id="update-button" style="display:flex; margin:0 15px" href="<?!= getScriptUrl()?>?v=invoices">New Order</a>
+      <a id="update-button" style="display:flex; margin:0 15px" href="<?!= getScriptUrl()?>?v=invoices">New Supplier</a>
+    </div>
+  </div>
+  <div style="margin: 50px 50px 0 50px;">
+    <h2>Check stocks</h2>
+    <form class="field" id="stock-info-get"  onsubmit="event.preventDefault()">
+      <div style="display:flex; margin-top: 25px; align-items:center">
+        <div>
+          <select type="text" name="stock_id">
+                  <option>SELECT AN ITEM</option>
+                  <?!= getItemOption() ?>
+                </select>
+        </div>
+        <div id="button-area" style="display:flex;">
+          <button id="update-button" style="margin:0 25px; height:100%;" onclick="checkStock()">Check</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div id="stock-info" style="margin: 50px 50px 100px 50px; padding: 0 25px">
+    
+  </div>
+
+
+
+  <div class="footer">
+    <p>4Wizards</p>
+    <p>@GoogleHackAPU</p>
+  </div>
+
+  <?!= include('payday-cd-script') ?>
+  <?!= include('inventory-script') ?>
+</body>
+
+</html>

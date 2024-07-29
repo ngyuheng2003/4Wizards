@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include('home-css') ?>
+    <?!= include('profile-css') ?>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <body style="justify-content: center; padding: 0; min-height: 100vh;">
+    <nav>
+        <div class="logo">
+            Finance Wizards
+        </div>
+        <div class="menu">
+            <a href="<?!= getScriptUrl()?>?v=index">Home</a>
+            <a href="<?!= getScriptUrl()?>?v=pp">Procurement</a>
+            <a href="<?!= getScriptUrl()?>?v=inventory">Inventory</a>
+            <a href="<?!= getScriptUrl()?>?v=invoices">Invoices</a>
+            <a href="<?!= getScriptUrl()?>?v=payroll">Payroll</a>
+            <a href="<?!= getScriptUrl()?>?v=profile">Profile</a>
+        </div>
+    </nav>
+    <div class="home-info" style="background-color: antiquewhite;">
+        <div>
+            <h2 id="datetime">Today is N/A</h2>
+            <p id="dayleft">N/A more days till Payday</p>
+        </div>
+    </div>
+    <div>
+    <h2 style="margin: 50px 50px 50px 50px;">Supplier information</h2>
+    <div id="supplier_info">
+      <div class="company-info">
+        <pre>Supplier ID&#09&#09:&#09</pre>
+        <pre style="font-weight: bold; text-transform: uppercase;"><?!= getSupplierInfo("Supplier ID") ?></pre>
+      </div>
+      <br>
+      <div class="company-info">
+        <pre>Supplier Name&#09:&#09</pre>
+        <pre style="font-weight: bold; text-transform: uppercase;"><?!= getSupplierInfo("Supplier name") ?></pre>
+      </div>
+      <br>
+      <div class="company-info">
+        <pre>Registration No.&#09:&#09</pre>
+        <pre style="font-weight: bold; text-transform: uppercase;"><?!= getSupplierInfo("Registration No") ?></pre>
+      </div>
+      <br>
+      <div class="company-info">
+        <pre>Address&#09&#09&#09:&#09</pre>
+        <pre style="font-weight: bold; text-transform: uppercase;line-height: 25px;"><?!= getSupplierInfo("Address") ?></pre>
+      </div>
+      <br>
+      <div class="company-info">
+        <pre>Email Address&#09&#09:&#09</pre>
+        <pre style="font-weight: bold; text-transform: uppercase"><?!= getSupplierInfo("Email") ?></pre>
+      </div>
+      <br>
+      <div class="company-info">
+        <pre>Contact&#09&#09&#09:&#09</pre>
+        <pre style="font-weight: bold;"><?!= getSupplierInfo("Contact") ?></pre>
+      </div>
+      
+    </div>
+    <p style="margin: 50px 50px 50px 50px;">* Make sure the informations above is correct.</p>
+    <div style="margin: 0px 50px 50px 50px;display:flex;justify-content:space-evenly">
+      <div style="justify-content:center;" >
+        <canvas id="chart_response_rate" style="width:100%; max-width:200px"></canvas> 
+        <div id="percent_response_rate" style="margin: 20px 0 0 0; text-align:center"><h3>- %</h3></div>
+        
+        <h3 style="margin: 0 auto; text-align:center">Response rate</h3> 
+      </div>
+      <div style="justify-content:center;" >
+        <canvas id="chart_delivery_rate" style="width:100%; max-width:200px"></canvas> 
+        <div id="percent_delivery_rate" style="margin: 20px 0 0 0; text-align:center"><h3>- %</h3></div>
+        
+        <h3 style="margin: 0 auto; text-align:center">Delivery on time rate</h3> 
+      </div>
+      <div style="justify-content:center;" >
+        <canvas id="chart_quality_rate" style="width:100%; max-width:200px"></canvas> 
+        <div id="percent_quality_rate" style="margin: 20px 0 0 0; text-align:center"><h3>- %</h3></div>
+        
+        <h3 style="margin: 0 auto; text-align:center">Product quality</h3> 
+      </div>
+      
+    </div>
+    
+    <div id="update-info-container">
+      <div style="display:flex; margin: 50px">
+        <div style="display:flex; margin:0 auto">
+          <button id="update-button" style="display:flex; margin:0 15px" onclick="updateInfoButton()">Delete</button>
+          <a id="update-button" style="display:flex; margin:0 15px" href="<?!= getScriptUrl()?>?v=inventory">Back</a>
+        </div>
+      </div>
+    </div>
+    </div>
+      
+    
+    
+    <div class="footer">
+        <p>4Wizards</p>
+        <p>@GoogleHackAPU</p>
+    </div>
+    
+    <?!= include('payday-cd-script') ?>
+    <?!= include('supplier-script') ?>
+</body>
+</html>

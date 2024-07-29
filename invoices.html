@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include('home-css') ?>
+    <?!= include('invoices-css') ?>
+  </head>
+  <body style="justify-content: center; padding: 0; min-height: 100vh;">
+    <nav>
+        <div class="logo">
+            Finance Wizards
+        </div>
+        <div class="menu">
+            <a href="<?!= getScriptUrl()?>?v=index">Home</a>
+            <a href="<?!= getScriptUrl()?>?v=pp">Procurement</a>
+            <a href="<?!= getScriptUrl()?>?v=inventory">Inventory</a>
+            <a href="<?!= getScriptUrl()?>?v=invoices">Invoices</a>
+            <a href="<?!= getScriptUrl()?>?v=payroll">Payroll</a>
+            <a href="<?!= getScriptUrl()?>?v=profile">Profile</a>
+        </div>
+    </nav>
+    <div class="home-info" style="background-color: antiquewhite;">
+        <div>
+            <h2 id="datetime">Today is N/A</h2>
+            <p id="dayleft">N/A more days till Payday</p>
+        </div>
+    </div>
+    <h2 style="margin: 50px 50px 0 50px;">Invoices</h2>
+    <div>
+        <table id="employeeInfoTable">
+          <thead>
+            <tr>
+                <th style="width: 15%;">Invoice ID</th>
+                <th>Company / Buyer name</th>
+                <th style="width: 12%;">Issue date</th>
+                <th style="width: 12%;">Due date</th>
+                <th style="width: 12%;">Amount</th>
+                <th style="width: 12%;">Status</th>
+                <th style="width: 12%;">Action</th>
+            </tr>
+            </thead>
+            <tbody id="employee-info">
+              <?!= generateInvoicesTable() ?>
+            </tbody>
+          
+        </table>
+    </div>
+    <div id="update-info-container">
+      <div style="display:flex; margin: 25px">
+        <div style="display:flex; margin:0 auto">
+          <a id="update-button" style="display:flex; margin:0 15px" href="<?!= getScriptUrl()?>?v=new-invoice">New invoice</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+        <p>4Wizards</p>
+        <p>@GoogleHackAPU</p>
+    </div>
+
+    <?!= include('payday-cd-script') ?>
+    <?!= include('invoices-script') ?>
+</body>
+</html>

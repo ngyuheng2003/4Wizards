@@ -1,0 +1,17 @@
+<script>
+
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var currentTime = new Date();
+document.getElementById("datetime").innerHTML = "Today is " + currentTime.getDate() + " " + months[currentTime.getMonth()] + " " + currentTime.getFullYear();
+
+if((25 - new Date().getDate()) == 0){
+  document.getElementById("dayleft").innerHTML = "Today is Payday";
+}
+else if((25 - new Date().getDate()) > 1){
+  document.getElementById("dayleft").innerHTML = (25 - new Date().getDate()) + " more day(s) till Payday";
+}
+else{
+  document.getElementById("dayleft").innerHTML = "Remember to complete payroll by the end of the month";
+}
+
+</script>

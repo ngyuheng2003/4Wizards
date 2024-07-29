@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include('home-css') ?>
+    <?!= include('invoices-payment-css') ?>
+  </head>
+  <body style="justify-content: center; padding: 0; min-height: 100vh;">
+    <nav>
+        <div class="logo">
+            Finance Wizards
+        </div>
+        <div class="menu">
+            <a href="<?!= getScriptUrl()?>?v=index">Home</a>
+            <a href="<?!= getScriptUrl()?>?v=pp">Procurement</a>
+            <a href="<?!= getScriptUrl()?>?v=inventory">Inventory</a>
+            <a href="<?!= getScriptUrl()?>?v=invoices">Invoices</a>
+            <a href="<?!= getScriptUrl()?>?v=payroll">Payroll</a>
+            <a href="<?!= getScriptUrl()?>?v=profile">Profile</a>
+        </div>
+    </nav>
+    <div class="home-info" style="background-color: antiquewhite;">
+        <div>
+            <h2 id="datetime">Today is N/A</h2>
+            <p id="dayleft">N/A more days till Payday</p>
+        </div>
+    </div>
+    <h2 style="margin: 50px;">Receipt</h2>
+    
+    
+    <div id='test'></div>
+
+
+    <div style="display:flex; margin:0 auto; width: 750px">
+      <div style="width:100%">
+        <h3 style="margin: 0px 0px 30px 0px;">Invoice details</h3>
+        <div id="invoice_info" style="margin-top: 20px;">
+          <p style="text-align: center;width:100%">Loading invoice detail... Please wait</p>
+        </div>
+        <h3 style="margin: 50px 0px 30px 0px;">Payment details</h3>
+        <div id="payment_info" style="margin-top: 20px;">
+          <p style="text-align: center;width:100%">Loading payment detail... Please wait</p>
+        </div>
+        <h3 style="margin: 50px 0px 30px 0px;">Receipt preview</h3>
+        <div id="receipt_preview" style="margin-top: 20px;">
+          <p style="text-align: center;width:100%">Loading receipt preview... Please wait</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; margin: 50px 0 100px 0">
+      <div id="button-area" style="display:flex; margin:0 auto">
+        <button id="update-button" style="display:flex; margin:0 15px" onclick="generateReceipt()">Print receipt</button>
+        <a id="update-button" style="display:flex; margin:0 15px" href="<?!= getScriptUrl()?>?v=invoices">Back</a>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>4Wizards</p>
+      <p>@GoogleHackAPU</p>
+    </div>
+
+    <?!= include('invoices-receipt-script') ?>
+
+  </body>
+</html>

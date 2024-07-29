@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <?!= include('home-css') ?>
+  <?!= include('payrollOnhold-css') ?>
+</head>
+<body style="justify-content: center; padding: 0; min-height: 100vh;">
+  <nav>
+    <div class="logo">Finance Wizards</div>
+    <div class="menu">
+      <a href="<?!= getScriptUrl()?>?v=index">Home</a>
+      <a href="<?!= getScriptUrl()?>?v=pp">PP</a>
+      <a href="<?!= getScriptUrl()?>?v=inventory">Inventory</a>
+      <a href="<?!= getScriptUrl()?>?v=invoices">Invoices</a>
+      <a href="<?!= getScriptUrl()?>?v=payroll">Payroll</a>
+      <a href="<?!= getScriptUrl()?>?v=profile">Profile</a>
+    </div>
+  </nav>
+  <div class="home-info" style="background-color: antiquewhite;">
+    <div>
+      <h2 id="datetime">Today is N/A</h2>
+      <p id="dayleft">N/A more days till Payday</p>
+    </div>
+  </div>
+  <div>
+    <h2 style="margin: 50px;">Part Time Employee Information</h2>
+    <div class="company-info">
+      <pre>Name&#09&#09&#09&#09:&#09</pre>
+      <pre style="font-weight: bold; text-transform: uppercase;"><?!= getStaffInfo(0, employeeName) ?></pre>
+    </div>
+    <br>
+    <div class="company-info">
+      <pre>NRIC/Passport&#09&#09&#09:&#09</pre>
+      <pre style="font-weight: bold; text-transform: uppercase;"><?!= getStaffInfo(2, employeeName) ?></pre>
+    </div>
+    <br>
+    <div class="company-info">
+      <pre>Position&#09&#09&#09&#09:&#09</pre>
+      <pre style="font-weight: bold; text-transform: uppercase;"><?!= getStaffInfo(1, employeeName) ?></pre>
+    </div>
+    <br>
+    <div class="company-info">
+      <pre>Email&#09&#09&#09&#09:&#09</pre>
+      <pre style="font-weight: bold; text-transform: uppercase;"><?!= getStaffInfo(3, employeeName) ?></pre>
+    </div>
+    <br>
+    <div class="company-info">
+      <pre>Bank Account Number&#09:&#09</pre>
+      <pre style="font-weight: bold; text-transform: uppercase;"><?!= getStaffInfo(4,employeeName) ?></pre>
+    </div>
+    <br>
+    <div class="company-info">
+      <pre>&#09&#09&#09&#09&#09&#09</pre>
+      <pre style="font-weight: bold; text-transform: uppercase;"><?!= getStaffInfo(5,employeeName) ?></pre>
+    </div>
+  </div>
+  <br>
+  <form id="ptForm" method="post">
+    <div class="field" style="margin:0px 100px;padding-bottom: 24px; display:inline-block;width: 500;">
+      <div>
+        <label for="ptH">Total Working Hour</label>
+        <input type="text" id="ptH" name="ptH" placeholder="Enter total hour here" required>
+      </div>
+      <input type="hidden" id="employeeName" name="employeeName"  value="<?!= getStaffInfo(0, employeeName) ?>">
+    </div>
+  </form>
+  <p style="margin: 50px;">* Make sure the information above is correct for payroll purposes.</p>
+  <div style="display:flex; margin: 50px;">
+    <div style="display:flex; margin:0 auto;">
+      <button type="button" id="update-button" onclick="updateButton()">Pay</button>
+      <a id="update-button" style="display:flex; margin:0 15px" href="<?!= getScriptUrl()?>?v=payroll">Back</a>
+    </div>
+  </div>
+  <div class="footer">
+    <p>4Wizards</p>
+    <p>@GoogleHackAPU</p>
+  </div>
+  <?!= include('payrollOnhold-script') ?>
+</body>
+</html>

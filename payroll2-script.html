@@ -1,0 +1,50 @@
+<script>
+
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var currentTime = new Date();
+document.getElementById("datetime").innerHTML = "Today is " + currentTime.getDate() + " " + months[currentTime.getMonth()] + " " + currentTime.getFullYear();
+
+if(currentTime.getDate() - 25 == 0){
+  document.getElementById("dateleft").innerHTML = "Today is Payday";
+}
+else if(currentTime.getDate() - 25 < 0){
+  document.getElementById("dayleft").innerHTML = (25 - currentTime.getDate()) + " more day(s) till Payday";
+}
+else{
+  document.getElementById("dayleft").innerHTML = "Remember to complete payroll by the end of the month";
+}
+
+document.getElementById('employmentType').addEventListener('change', function() {
+        var selectedType = this.value;
+        if (selectedType === 'Part Time') {
+          document.getElementById('permanentFields').style.display = 'none';
+          document.getElementById('partTimeFields').style.display = 'block';
+        } else {
+          document.getElementById('permanentFields').style.display = 'block';
+          document.getElementById('partTimeFields').style.display = 'none';
+        }
+      });
+
+
+    function addEmployee() {
+        var form = document.getElementById('payrollForm');
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => { data[key] = value; });
+
+        // Send data to Google Apps Script
+        google.script.run.withSuccessHandler(function(response) {
+          if (response === 'Data successfully added!') {
+            alert('Payroll data submitted successfully!');
+            // Clear the form
+            form.reset();
+          } else {
+            alert(response); // Show error message from server
+          }
+        }).withFailureHandler(function(error) {
+          console.error('Error:', error);
+          alert('An error occurred. Please try again.');
+        }).processFormData(data);
+      }
+
+</script>

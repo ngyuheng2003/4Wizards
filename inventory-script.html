@@ -1,0 +1,68 @@
+<script>
+  google.script.run.withSuccessHandler(loadTable).generateSupplierTable();
+
+function loadTable(html){
+  document.getElementById("inventory-info").innerHTML = html;
+}
+
+function nextDetailPage(button){
+  let row = button.parentNode.parentNode;
+  google.script.run.setSupplierID(row.cells[0].innerHTML);
+  google.script.run.withSuccessHandler(nextSupplierPage).getScriptUrl();
+}
+
+function nextSupplierPage(value){
+  let url = value + "?v=supplier";
+  open(url, "_top");
+}
+
+function checkStock(){
+  document.getElementById("stock-info").innerHTML = "<p style='margin: 0 100px'>Loading data... Please wait</p>";
+  google.script.run.withSuccessHandler(checkStockInfo).getStockInfo(document.getElementById("stock-info-get"));
+}
+
+function checkStockInfo(jsonData){
+  let html = `
+    <h3 style= " margin-bottom: 25px">Stock information</h3>
+    <div>
+      <div class="company-info">
+        <pre>Product ID&#09&#09&#09:&#09</pre>
+        <pre style="font-weight: bold; text-transform: uppercase;">`+ jsonData[0]["Product ID"] + `</pre>
+      </div>
+      <br>
+      <div class="company-info">
+        <pre>Product name&#09&#09&#09:&#09</pre>
+        <pre style="font-weight: bold; text-transform: uppercase;">`+ jsonData[0]["Product name"] + `</pre>
+      </div>
+      <br>
+      <div class="company-info">
+        <pre>Supplier ID&#09&#09&#09:&#09</pre>
+        <pre style="font-weight: bold; text-transform: uppercase;line-height: 25px;">`+ jsonData[0]["Supplier ID"] + `</pre>
+      </div>
+      <br>
+      <div class="company-info">
+        <pre>Supplier name&#09&#09&#09:&#09</pre>
+        <pre style="font-weight: bold;">`+ jsonData[0]["Supplier name"] + `</pre>
+      </div>
+      <br>
+      <div class="company-info">
+        <pre>Available stock&#09&#09:&#09</pre>
+        <pre style="font-weight: bold;">`+ jsonData[0]["Available stock"] + ` unit(s)</pre>
+      </div>
+      <br>
+      <div class="company-info">
+        <pre>Last order price&#09&#09:&#09</pre>
+        <pre style="font-weight: bold;">RM `+ jsonData[0]["Order"].toFixed(2) + `</pre>
+      </div>
+      <br>
+      <div class="company-info">
+        <pre>Current selling price&#09:&#09</pre>
+        <pre style="font-weight: bold;">RM `+ jsonData[0]["Sales"].toFixed(2) + `</pre>
+      </div>
+    </div>
+  `;
+
+  document.getElementById("stock-info").innerHTML = html;
+}
+
+</script>

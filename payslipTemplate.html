@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      background-color: #f9f9f9;
+      max-width: 600px;
+      margin: auto;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .header img {
+      max-width: 250px;
+    }
+    .header .company-info {
+      text-align: left;
+    }
+    .header .company-info h1 {
+      margin: 0;
+      font-size: 26px;
+      color: #333;
+    }
+    .header .company-info p {
+      margin: 3px 0 0;
+      font-size: 18px;
+      color: #666;
+    }
+    h2 {
+      color: #333;
+      text-align: center;
+
+      padding-bottom: 10px;
+    }
+    .issued-date {
+      text-align: center;
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    .section h3 {
+      padding: 5px;
+      margin: 0 -20px 10px -20px;
+      text-align: center;
+      color: #000;
+      font-weight: bold;
+      border-bottom: 2px solid #000; 
+	    border-top: 2px solid #000; /* Add top border for line */
+      margin-top: 20px;
+	    margin-bottom:10px;
+
+
+    }
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 5px 0;
+    }
+    .detail-row .label {
+      font-size: 14px;
+      width: 45%;
+      text-align: left;
+    }
+    .detail-row .value {
+      font-size: 14px;
+      width: 65%;
+      text-align: left;
+    }
+    .totals {
+      font-weight: bold;
+    }
+    .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .flex-item {
+      width: 48%;
+    }
+
+    .total-deductions .label {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="header" style="margin: 10px 0px 5px 10px">
+    <div class="company-info">
+      <h1 style="font-size: 18px;">4WIZARDS SDN BHD</h1>
+      <p style="font-size: 14px;">UNIVERSITI MALAYA</p>
+      <p style="font-size: 14px;">50603, KUALA LUMPUR</p>
+      <p style="font-size: 14px;">WILAYAH PERSEKUTUAN KUALA LUMPUR</p>
+      <p style="font-size: 14px;">MALAYSIA</p>
+    </div>
+  </div>
+  
+  <h2>Payslip for <span id="payslip-month"><?= payslipMonth ?></span></h2>
+  <div class="issued-date">Issued Date: <span id="issued-date"><?= issuedDate ?></span></div>
+  
+  <div class="section">
+    <h3>Employee Details</h3>
+    <div class="detail-row">
+      <div class="label">Name:</div>
+      <div class="value"><?= employeeName ?></div>
+    </div>
+    <div class="detail-row">
+      <div class="label">NRIC:</div>
+      <div class="value"><?= ic ?></div>
+    </div>
+    <div class="detail-row">
+      <div class="label">Employee ID:</div>
+      <div class="value"><?= employeeID ?></div>
+    </div>
+    <div class="detail-row">
+      <div class="label">Position:</div>
+      <div class="value"><?= position ?></div>
+    </div>
+    <div class="detail-row">
+      <div class="label">EPF No:</div>
+      <div class="value"><?= epfNo ?></div>
+    </div>
+    <div class="detail-row">
+      <div class="label">SOCSO No:</div>
+      <div class="value"><?= socsoNo ?></div>
+    </div>
+    <div class="detail-row">
+      <div class="label">Bank:</div>
+      <div class="value"><?= bank ?></div>
+    </div>
+    <div class="detail-row">
+      <div class="label">Bank Acc No:</div>
+      <div class="value"><?= acc ?></div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <h3>Salary Details</h3>
+    <div class="detail-row">
+      <div class="label">Basic Salary:</div>
+      <div class="value"><?= basicSalary ?></div>
+    </div>
+    <div class="detail-row">
+      <div class="label">Overtime Pay:</div>
+      <div class="value"><?= overtimePay ?></div>
+    </div>
+    <div class="detail-row">
+      <div class="label">Allowances:</div>
+      <div class="value"><?= allowances ?></div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <h3>Deductions</h3>
+    <div class="detail-row">
+      <div class="label">EPF Contribution (Employee):</div>
+      <div class="value"><?= epfContributionEmployee ?></div>
+    </div>
+    <div class="detail-row">
+      <div class="label">SOCSO Contribution (Employee):</div>
+      <div class="value"><?= socsoContributionEmployee ?></div>
+    </div>
+    <div class="detail-row">
+      <div class="label">Other deduction:</div>
+      <div class="value"><?= otherDeduction ?></div>
+    </div>
+    <div class="detail-row total-deductions">
+      <div class="label">Total Deductions:</div>
+      <div class="value"><?= deductions ?></div>
+    </div>
+  </div>
+  
+  <div class="section totals" style="margin-bottom:80px">
+    <h3>Total Pay</h3>
+    <div class="detail-row">
+      <div class="label">Gross Pay:</div>
+      <div class="value"><?= grossPay ?></div>
+    </div>
+    <div class="detail-row">
+      <div class="label">Net Pay:</div>
+      <div class="value"><?= netPay ?></div>
+    </div>
+  </div>
+
+</body>
+</html>
+

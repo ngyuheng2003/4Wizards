@@ -1,0 +1,33 @@
+<script >
+
+
+const type = ["chart_response_rate", "chart_delivery_rate", "chart_quality_rate"];
+const type2 = ["percent_response_rate", "percent_delivery_rate", "percent_quality_rate"];
+for(let i = 0; i < 3; i++){
+  google.script.run.withSuccessHandler(createChart).getChartInfo(i);
+}
+
+function createChart(array){
+  new Chart(array[0], {
+  type: "doughnut",
+  data: {
+    datasets: [{
+      backgroundColor: [
+        "#008000",
+        "#FFFFFF",
+      ],
+      data: array[1]
+    }]
+  },
+  options: {
+    legend: {
+      display: false,
+    },
+
+    
+  }
+});
+document.getElementById(type2[array[2]]).innerHTML = array[1][0] + " %";
+}
+
+</script>

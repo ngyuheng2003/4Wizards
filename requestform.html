@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include('home-css') ?>
+    <?!= include('requestform-css') ?>
+  </head>
+  <body style="justify-content: center; padding: 0; min-height: 100vh;">
+    <nav>
+        <div class="logo">
+            Finance Wizards
+        </div>
+        <div class="menu">
+            <a href="<?!= getScriptUrl()?>?v=index">Home</a>
+            <a href="<?!= getScriptUrl()?>?v=pp">Procurement</a>
+            <a href="<?!= getScriptUrl()?>?v=inventory">Inventory</a>
+            <a href="<?!= getScriptUrl()?>?v=invoices">Invoices</a>
+            <a href="<?!= getScriptUrl()?>?v=payroll">Payroll</a>
+            <a href="<?!= getScriptUrl()?>?v=profile">Profile</a>
+        </div>
+    </nav>
+    <div class="home-info" style="background-color: antiquewhite;">
+        <div>
+            <h2 id="datetime">Today is N/A</h2>
+            <p id="dayleft">N/A more days till Payday</p>
+        </div>
+    </div>
+    <h2 style="margin: 50px 50px 0 50px;">New Procurement Plan</h2>
+    
+    <div style="display:flex; margin:0 auto;">
+      <form id="stripe-login">
+        <h3 style="margin: 50px 0px 0px 0px;">Employee Information</h3>
+        <div class="field" style="margin: 20px 0px 0 0px;padding-bottom: 24px; display:inline-block; width: 100%;">
+          <div style="width:100%;">
+            <label for="name">Full Name</label>
+            <input type="text" name="name">
+          </div>
+          <div style="width:100px"></div>
+          <div style="width:100%;">
+            <label for="department">Department</label>
+            <input type="text" name="department">
+          </div>
+        </div>
+        <h3 style="margin: 25px 0px 10px 0px;">Procurement Plan</h3>
+        <div class="field" style="margin: 20px 0px 0 0px;padding-bottom: 24px; display:inline-block; width: 100%;">
+          <div>
+            <label for="plan">Procurement Description</label>
+            <input type="text" name="plan">
+          </div>
+          <div style="display:flex;">
+            <div style="width:100%;">
+              <label for="urgency">Urgency Level:</label>
+              <select id="urgency" name="urgency">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select><br><br>
+            </div>
+          </div>
+          <h3 style="margin: 25px 0px 10px 0px;">Items Request List</h3>
+          <table id="ItemRequestTable">
+            <thead>
+              <tr>
+                <th style="width: 12%;">Product ID</th>
+                <th>Product name</th>
+                <th style="width: 12%;">Price per unit (KG)</th>
+                <th style="width: 12%;">Quantity</th>
+                <th style="width: 12%;">Total</th>
+                <th style="width: 12%;">Remove</th>
+              </tr>
+            </thead>
+            <tbody id="employee-info">
+              <!-- Existing procurement items will be populated here -->
+              <tr>
+                <td colspan="6" style="text-align: center;">Add product by ID or name</td>
+              </tr>
+              <tr>
+                <td colspan="4" style="text-align: center;">Total amount (RM)</td>
+                <td colspan="2" style="text-align: center;">0.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 style="margin: 25px 0px 10px 0px;">Add Item</h3>
+        <div class="field" style="margin: 20px 0px 0 0px;padding-bottom: 24px; display:inline-block;width: 100%;">
+          <div style="width:100%;">
+            <label for="itemSelect">Select Item</label>
+            <select id="itemSelect" name="itemSelect" onchange="populateItemDetails()">
+              <!-- Options will be populated by JavaScript -->
+            </select>
+          </div>
+          <div style="width:100%;">
+            <label for="newItem">Or Enter New Item</label>
+            <input type="text" id="newItem" name="newItem">
+          </div>
+          <div style="display:flex;">
+            <div style="width:100%;">
+              <label for="quantity">Quantity</label>
+              <input type="number" name="quantity" id="quantity">
+            </div>
+            <div style="width:100px"></div>
+            <div style="width:100%;">
+              <label for="unitprice">Unit Price</label>
+              <input type="number" name="unitprice" id="unitprice" step="0.01">
+            </div>
+          </div>
+        </div>
+        <input type ="button" class="button" value="Add" onclick="addItem()">
+      </form>
+    </div>
+
+    <div style="display:flex; margin: 50px">
+      <div style="display:flex; margin:0 auto">
+        <a id="update-button" style="display:flex; margin:0 15px" href="<?!= getScriptUrl()?>?v=pp">Back</a>
+        <a id="update-button" style="display:flex; margin:0 15px" href="<?!= getScriptUrl()?>?v=pp" onclick="submitProcurementPlan()">Submit</a>
+      </div>
+    </div>
+    <div class="footer">
+        <p>4Wizards</p>
+        <p>@GoogleHackAPU</p>
+    </div>
+    <?!= include('requestform-script') ?>
+  </body>
+</html>

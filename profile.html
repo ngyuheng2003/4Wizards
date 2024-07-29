@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include('home-css') ?>
+    <?!= include('profile-css') ?>
+  </head>
+  <body style="justify-content: center; padding: 0; min-height: 100vh;">
+    <nav>
+        <div class="logo">
+            Finance Wizards
+        </div>
+        <div class="menu">
+            <a href="<?!= getScriptUrl()?>?v=index">Home</a>
+            <a href="<?!= getScriptUrl()?>?v=pp">Procurement</a>
+            <a href="<?!= getScriptUrl()?>?v=inventory">Inventory</a>
+            <a href="<?!= getScriptUrl()?>?v=invoices">Invoices</a>
+            <a href="<?!= getScriptUrl()?>?v=payroll">Payroll</a>
+            <a href="<?!= getScriptUrl()?>?v=profile">Profile</a>
+        </div>
+    </nav>
+    <div class="home-info" style="background-color: antiquewhite;">
+        <div>
+            <h2 id="datetime">Today is N/A</h2>
+            <p id="dayleft">N/A more days till Payday</p>
+        </div>
+    </div>
+    <div>
+    <h2 style="margin: 50px 50px 50px 50px;">Company information</h2>
+    <div>
+      <div class="company-info">
+        <pre>Company Name&#09:&#09</pre>
+        <pre style="font-weight: bold; text-transform: uppercase;"><?!= getCompanyInfo(0) ?></pre>
+      </div>
+      <br>
+      <div class="company-info">
+        <pre>Registration No.&#09:&#09</pre>
+        <pre style="font-weight: bold; text-transform: uppercase;"><?!= getCompanyInfo(1) ?></pre>
+      </div>
+      <br>
+      <div class="company-info">
+        <pre>Address&#09&#09&#09:&#09</pre>
+        <pre style="font-weight: bold; text-transform: uppercase;line-height: 25px;"><?!= getCompanyInfo(3)[0] ?>,<br><?!= getCompanyInfo(3)[1] ?> <?!= getCompanyInfo(3)[2] ?>,<br><?!= getCompanyInfo(3)[3] ?>, <?!= getCompanyInfo(3)[4] ?></pre>
+      </div>
+      <br>
+      <div class="company-info">
+        <pre>Contact&#09&#09&#09:&#09</pre>
+        <pre style="font-weight: bold;"><?!= getCompanyInfo(2) ?></pre>
+      </div>
+    </div>
+    <p style="margin: 50px 50px 50px 50px;">* Make sure the informations above is correct. These informations will be used to generate invoices, pay slips, etc.</p>
+    
+    <div id="update-info-container">
+      <div style="display:flex; margin: 50px">
+        <div style="display:flex; margin:0 auto">
+          <button id="update-button" style="display:flex; margin:0 15px" onclick="updateInfoButton()">Update information</button>
+          <button id="update-button" style="display:flex; margin:0 15px">Logout</button>
+        </div>
+      </div>
+    </div>
+    </div>
+      
+    
+    
+    <div class="footer">
+        <p>4Wizards</p>
+        <p>@GoogleHackAPU</p>
+    </div>
+    
+    <?!= include('profile-script') ?>
+</body>
+</html>

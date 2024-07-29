@@ -1,0 +1,46 @@
+<script>
+  document.getElementById("profitMonth").innerHTML = "Profit for " + months[currentTime.getMonth()];
+document.getElementById("update_date").innerHTML = "Updated till " + " " + new Date().getDate() + " " + months[currentTime.getMonth()] + " " + new Date().getFullYear();
+
+const xValues = getX();
+var yValues = [];
+google.script.run.withSuccessHandler(getY).getDailyProfit();
+
+
+
+function getX(){
+  let xValues = []
+  for(let i = 1; i <= new Date().getDate(); i++){
+    xValues.push(i);
+  }
+  return xValues;
+}
+
+function getY(jsonData){
+  for(let i = 1; i < new Date().getDate(); i++){
+    let word = "" + i;
+    yValues.push(jsonData[0][i]);
+  }
+  createChart();
+}
+
+function createChart(){
+  document.getElementById("chart_area").innerHTML = '<canvas id="myChart" style="width:100%;max-width:800px; height:400px;"></canvas>';
+  new Chart("myChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{ 
+      data: yValues,
+      backgroundColor: "#fed03f",
+    }]
+  },
+  options: {
+    plugins:{
+      legend: {display: false}
+    }
+    
+  }
+});
+}
+</script>

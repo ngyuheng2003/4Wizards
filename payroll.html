@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include('home-css') ?>
+    <?!= include('payroll-css') ?>
+  </head>
+  <body style="justify-content: center; padding: 0; min-height: 100vh;">
+    <nav>
+        <div class="logo">
+            Finance Wizards
+        </div>
+        <div class="menu">
+            <a href="<?!= getScriptUrl()?>?v=index">Home</a>
+            <a href="<?!= getScriptUrl()?>?v=pp">Procurement</a>
+            <a href="<?!= getScriptUrl()?>?v=inventory">Inventory</a>
+            <a href="<?!= getScriptUrl()?>?v=invoices">Invoices</a>
+            <a href="<?!= getScriptUrl()?>?v=payroll">Payroll</a>
+            <a href="<?!= getScriptUrl()?>?v=profile">Profile</a>
+        </div>
+    </nav>
+    <div class="home-info" style="background-color: antiquewhite;">
+        <div>
+            <h2 id="datetime">Today is N/A</h2>
+            <p id="dayleft">N/A more days till Payday</p>
+        </div>
+    </div>
+    <h2 style="margin: 50px 50px 0 50px;">Employee</h2>
+    <div>
+        <table id="employeeInfoTable">
+          <thead>
+            <tr>
+                <th>Name</th>
+                <th style="width: 15%;">Position</th>
+                <th style="width: 15%;">Type</th>
+                <th style="width: 15%;">Payroll status</th>
+                <th style="width: 15%;">Action</th>
+            </tr>
+            </thead>
+            <tbody id="employee-info">
+              <?!= generateEmployeeInfoTable() ?>
+            </tbody>
+          
+        </table>
+    </div>
+    <div id="update-info-container">
+      <div style="display:flex; margin:-10px 0px 60px 0px">
+        <div style="display:flex; margin:0 auto">
+          <a id="update-button" style="display:flex; margin:0 15px" href="<?!= getScriptUrl()?>?v=new-employee">New employee</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+        <p>4Wizards</p>
+        <p>@GoogleHackAPU</p>
+    </div>
+
+    <?!= include('payroll-script') ?>
+</body>
+</html>

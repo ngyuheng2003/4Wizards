@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include('home-css') ?>
+    <?!= include('invoices-css') ?>
+  </head>
+  <body style="justify-content: center; padding: 0; min-height: 100vh;">
+    <nav>
+        <div class="logo">
+            Finance Wizards
+        </div>
+        <div class="menu">
+            <a href="<?!= getScriptUrl()?>?v=index">Home</a>
+            <a href="<?!= getScriptUrl()?>?v=pp">Procurement</a>
+            <a href="<?!= getScriptUrl()?>?v=inventory">Inventory</a>
+            <a href="<?!= getScriptUrl()?>?v=invoices">Invoices</a>
+            <a href="<?!= getScriptUrl()?>?v=payroll">Payroll</a>
+            <a href="<?!= getScriptUrl()?>?v=profile">Profile</a>
+        </div>
+    </nav>
+    <div class="home-info" style="background-color: antiquewhite;">
+        <div>
+            <h2 id="datetime">Today is N/A</h2>
+            <p id="dayleft">N/A more days till Payday</p>
+        </div>
+    </div>
+    <h2 id='invoice_id' style="margin: 50px 50px 0 50px;">Invoice ()</h2>
+    <div>
+        <table id="employeeInfoTable">
+          <thead>
+            <tr>
+                <th style="width: 20%;">Receipt ID</th>
+                <th>Company / Buyer name</th>
+                <th style="width: 15%;">Payment date</th>
+                <th style="width: 15%;">Amount</th>
+                <th style="width: 15%;">Action</th>
+            </tr>
+            </thead>
+            <tbody id="receipt-info">
+              <tr>
+                <td colspan="5" style="text-align: center;">Loading data... Please wait</td>
+              </tr>
+            </tbody>
+          
+        </table>
+    </div>
+    
+    <div class="footer">
+        <p>4Wizards</p>
+        <p>@GoogleHackAPU</p>
+    </div>
+
+    <?!= include('invoices-receiptList-script') ?>
+</body>
+</html>

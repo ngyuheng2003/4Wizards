@@ -1,0 +1,103 @@
+<script>
+
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var currentTime = new Date();
+document.getElementById("datetime").innerHTML = "Today is " + currentTime.getDate() + " " + months[currentTime.getMonth()] + " " + currentTime.getFullYear();
+
+if(currentTime.getDate() - 25 == 0){
+  document.getElementById("dateleft").innerHTML = "Today is Payday";
+}
+else if(currentTime.getDate() - 25 < 0){
+  document.getElementById("dayleft").innerHTML = (25 - currentTime.getDate()) + " more day(s) till Payday";
+}
+else{
+  document.getElementById("dayleft").innerHTML = "Remember to complete payroll by the end of the month";
+}
+
+function showUpdateContainer(value){
+  var html = `
+    <h3 style="margin: 50px 50px 0px 50px;">Update company information</h3>
+    <form id="company-info-update" onsubmit="event.preventDefault()">
+      <div class="field" style="margin: 20px 50px 0 50px;padding-bottom: 24px; display:inline-block;">
+          <div>
+            <label for="company-name">Company Name</label>
+            <input type="text" name="company_name" value="`+ value[0] +`">
+          </div>
+          <div style="display:flex;">
+            <div>
+              <label for="registration-no">Registration No</label>
+              <input type="text" name="registration_no" value="`+ value[1] +`">
+            </div>
+            <div style="width:50px"></div>
+            <div>
+              <label for="contact">Contact</label>
+              <input type="text" name="contact" value="`+ value[2] +`">
+            </div>
+          </div>
+          <div>
+            <label for="address">Address</label>
+            <input type="text" name="address" value="`+ value[3] +`">
+          </div>
+          <div style="display:flex;">
+            <div>
+              <label for="city">City</label>
+              <input type="text" name="city" value="`+ value[5] +`">
+            </div>
+            <div style="width:50px"></div>
+            <div>
+              <label for="postcode">Postcode</label>
+              <input type="text" name="postcode" value="`+ value[4] +`">
+            </div>
+          </div>
+          <div style="display:flex;">
+            <div>
+              <label for="province">Province</label>
+              <input type="text" name="province" value="`+ value[6] +`">
+            </div>
+            <div style="width:50px"></div>
+            <div>
+              <label for="country">Country</label>
+              <input type="text" name="country" value="`+ value[7] +`">
+            </div>
+          </div>
+        </div>
+      <div style="display:flex; margin: 50px">
+        <div id="button-area" style="display:flex; margin:0 auto">
+          <button id="update-button" style="display:flex; margin:0 15px" onclick="updateInfo()">Update</button>
+          <button id="update-button" style="display:flex; margin:0 15px" onclick="showPreviousContainer()">Back</button>
+        </div>
+    </div>  
+    </form>
+
+    
+  `
+  document.getElementById("update-info-container").innerHTML = html;
+}
+
+function updateInfoButton(){
+  document.getElementById("update-info-container").innerHTML = "<pre style='text-align: center; font-size: 16px; margin: 50px'>Loading... Please wait</pre>";
+  google.script.run.withSuccessHandler(showUpdateContainer).getCompanyInfo(5);
+}
+
+function showPreviousContainer(){
+  var html = `
+    <div style="display:flex; margin: 50px">
+      <div style="display:flex; margin:0 auto">
+        <button id="update-button" style="display:flex; margin:0 15px" onclick="updateInfoButton()">Update information</button>
+        <button id="update-button" style="display:flex; margin:0 15px">Logout</button>
+      </div>
+    </div>
+  `
+  document.getElementById("update-info-container").innerHTML = html;
+}
+
+function updateInfo(){
+  document.getElementById("button-area").innerHTML = "<pre style='text-align: center; font-size: 16px'>Updating latest information... Please do not refresh the page or exit the browser</pre>";
+  google.script.run.withSuccessHandler(refreshInfo).updateCompanyInfo(document.getElementById("company-info-update"));
+}
+
+function refreshInfo(value){
+  open(value, '_top');
+}
+
+</script>

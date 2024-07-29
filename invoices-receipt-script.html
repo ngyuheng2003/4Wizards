@@ -1,0 +1,26 @@
+<script>
+
+
+
+
+google.script.run.withSuccessHandler(printInvoiceInfo).getInvoicesInfo(localStorage.getItem('invoice_id'));
+google.script.run.withSuccessHandler(printPaymentInfo).getPaymentInfo(localStorage.getItem('receipt_id'));
+google.script.run.withSuccessHandler(printReceiptPreview).getReceiptPreview(localStorage.getItem('receipt_id'));
+
+
+
+function printInvoiceInfo(html){
+  document.getElementById("invoice_info").innerHTML = html;
+}
+
+function printPaymentInfo(html){
+  document.getElementById("payment_info").innerHTML = html;
+}
+
+function printReceiptPreview(html){
+  document.getElementById("receipt_preview").innerHTML = html;
+}
+
+
+
+</script>

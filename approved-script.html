@@ -1,0 +1,13 @@
+<script>
+  function nextPage(value) {
+  let url = value + "?v=po2";
+  open(url, "_top");
+}
+
+// Change to purchase order page
+function nextPurchaseOrder(button) {
+  let row = button.parentNode.parentNode;
+  localStorage.setItem('approvals_id', row.cells[0].innerHTML);
+  google.script.run.withSuccessHandler(nextPage).getScriptUrl();
+}
+</script>

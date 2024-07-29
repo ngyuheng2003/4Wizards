@@ -1,0 +1,23 @@
+<script>
+
+google.script.run.withSuccessHandler(printInvoiceInfo).getInvoicesInfo(localStorage.getItem('invoice_id'));
+
+document.getElementById("invoice_id").value = localStorage.getItem('invoice_id');
+document.getElementById("company_name").value = localStorage.getItem('company_name');
+
+function printInvoiceInfo(html){
+  document.getElementById("invoice_info").innerHTML = html;
+}
+
+function generateReceipt(){
+  document.getElementById("button-area").innerHTML = "<p style='text-align: center'>Generating receipt... Please do not refresh the page or exit the browser</p>"
+  google.script.run.withSuccessHandler(nextPage).updatePaymentInfo(document.getElementById("payment-info"));
+}
+
+
+function nextPage(value){
+  localStorage.setItem('receipt_id', value[1])
+  open(value[0], '_top');
+}
+
+</script>

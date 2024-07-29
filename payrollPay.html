@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include('home-css') ?>
+    <?!= include('payrollPay-css') ?>
+  </head>
+  <body style="justify-content: center; padding: 0; min-height: 100vh;">
+    <nav>
+        <div class="logo">
+            Finance Wizards
+        </div>
+        <div class="menu">
+            <a href="<?!= getScriptUrl()?>?v=index">Home</a>
+            <a href="<?!= getScriptUrl()?>?v=pp">Procurement</a>
+            <a href="<?!= getScriptUrl()?>?v=inventory">Inventory</a>
+            <a href="<?!= getScriptUrl()?>?v=invoices">Invoices</a>
+            <a href="<?!= getScriptUrl()?>?v=payroll">Payroll</a>
+            <a href="<?!= getScriptUrl()?>?v=profile">Profile</a>
+        </div>
+    </nav>
+    <div class="home-info" style="background-color: antiquewhite;">
+        <div>
+            <h2 id="datetime">Today is N/A</h2>
+            <p id="dayleft">N/A more days till Payday</p>
+        </div>
+    </div>
+    <h2 style="margin: 50px;">Made the payment</h2>
+    
+    
+    <div id='test'></div>
+
+
+    <div style="display:flex; margin:0 auto; width: 600px">
+      <div>
+        <h3 style="margin: 0px 0px 30px 0px;">Employee details</h3>
+        <table class="field" style="padding-bottom: 10px; display:inline-block; width: 100px;">
+            <tr>
+            <div style="display:flex;">
+              <td>
+              <div class="company-info">
+                <pre style="font-weight:bold">Employee ID&#09&#09:&#09</pre>
+                <pre style="text-transform: uppercase;"><?!= getEmployeeData(0,employeeName) ?></pre>
+              </div>
+              </td>
+             <td style="padding: 0px 50px;">
+              <div class="company-info">
+                <pre style="font-weight:bold">EPF No.&#09&#09&#09:&#09</pre>
+                <pre style="text-transform: uppercase;"><?!= getEmployeeData(9,employeeName) ?></pre>
+              </div>
+              </td>
+            </div>
+            </tr>
+            
+            <tr>
+            <div style="display:flex;">
+              <td>
+              <div class="company-info">
+                <pre style="font-weight:bold">Name&#09&#09&#09:&#09</pre>
+                <pre style="text-transform: uppercase;"><?!= getEmployeeData(1,employeeName) ?></pre>
+              </div>
+              </td>
+
+              <td style="padding: 0px 50px;">
+              <div class="company-info">
+                <pre style="font-weight:bold">Socso No.&#09&#09:&#09</pre>
+                <pre style="text-transform: uppercase;"><?!= getEmployeeData(10,employeeName) ?></pre>
+              </div>
+              </td>
+            </div>
+            </tr>
+            
+            <tr>
+            <div style="display:flex;">
+              <td>
+              <div class="company-info">
+                <pre style="font-weight:bold">NRIC/Passport&#09:&#09</pre>
+                <pre style="text-transform: uppercase;"><?!= getEmployeeData(3,employeeName) ?></pre>
+              </div>
+              </td>
+              <td style="padding: 0px 50px;">
+              <div class="company-info">
+                <pre style="font-weight:bold">Bank&#09&#09&#09:&#09</pre>
+                <pre style="text-transform: uppercase;"><?!= getEmployeeData(12,employeeName) ?></pre>
+              </div>
+              </td>
+            </div>
+            </tr>
+
+            <tr>
+            <div style="display:flex;">
+              <td>
+              <div class="company-info">
+                <pre style="font-weight:bold">Position&#09&#09&#09:&#09</pre>
+                <pre style="text-transform: uppercase;"><?!= getEmployeeData(6,employeeName) ?></pre>
+              </div>
+              </td>
+              <td style="padding: 0px 50px;">
+              <div class="company-info">
+                <pre style="font-weight:bold">Bank Account No.&#09:&#09</pre>
+                <pre style="text-transform: uppercase;"><?!= getEmployeeData(13,employeeName) ?></pre>
+              </div>
+              </td>
+            </div>
+            </tr>
+
+            <tr>
+            <div style="display:flex;">
+              <td>
+              <div class="company-info">
+                <pre style="font-weight:bold">Email&#09&#09&#09:&#09</pre>
+                <pre><?!= getEmployeeData(11,employeeName) ?></pre>
+              </div>
+              </td>
+            </div>
+            </tr>
+            
+            
+          </table>
+
+
+        <p style="margin: 50px 0 50px 0;">* Make sure the informations above is correct before made the payment to your employee</p>
+        <form id="payment-info">
+          <h3 style="margin: 25px 0px 10px 0px;">Payment details</h3>
+          <div class="field" style="margin: 20px 0px 0 0px;padding-bottom: 24px; display:inline-block; width: 100%;">
+            <div style="display:flex;">
+              <div style="width:100%;">
+                <label for="dayWork">Day Works</label>
+                <input id='dayWork' type="number" name="dayWork" required>
+              </div>
+              <div style="width:100px"></div>
+              <div style="width:100%;">
+                <label for="ot">Normal OT(Hour)</label>
+                <input id='ot' type="number" name="ot" required>
+              </div>
+            </div>
+             <div style="display:flex;">
+              <div style="width:100%;">
+                <label for="restOT">Rest OT (day)</label>
+                <input id='restOT' type="number" name="restOT" required>
+              </div>
+              <div style="width:100px"></div>
+              <div style="width:100%;">
+                <label for="pubHoliday">Public Holiday OT(day)</label>
+                <input id='pubHoliday' type="number" name="pubHoliday" required>
+              </div>
+            </div>
+            <div style="display:flex;">
+              <div style="width:100%;">
+                <label for="medicalLeave">Medical Leave(day)</label>
+                <input id='medicalLeave' type="number" name="medicalLeave" >
+              </div>
+              <div style="width:100px"></div>
+              <div style="width:100%;">
+                <label for="annualLeave">Annual Leave (day)</label>
+                <input id='annualLeave' type="number" name="annualLeave" >
+              </div>
+            </div>
+            
+             <div style="display:flex;">
+              <div style="width:100%;">
+                <label for="claim">Claims</label>
+                <input id='claim' type="number" name="claim" >
+              </div>
+              <div style="width:100px"></div>
+              <div style="width:100%;">
+                <label for="deduction">Other deductions</label>
+                <input id='deduction' type="number" name="deduction">
+              </div>
+            </div>
+             <div class="field" style="padding-bottom: 24px; display:inline-block;width: 100%;">
+            <div>
+              <label for="remarks">Remarks</label>
+              <input type="text" id="remarks" name="remarks">
+            </div>
+            </div>
+            
+            <div style="display:flex;">
+              <div style="width:100%;">
+                <label for="payment_method">Payment method</label>
+                <select type="text" id="payment_method" name="payment_method">
+                  <option>NOT SELECTED</option>
+                  <?!= getPaymentMethodOption() ?>
+                </select>
+              </div>
+            </div>
+            <input type="hidden" id="employeeName" name="employeeName"  value="<?!= getEmployeeData(1, employeeName) ?>">
+          </div>
+          
+        </form>
+      </div>
+    </div>
+
+    <div style="display:flex; margin: 50px 0 100px 0">
+      <div id="button-area" style="display:flex; margin:0 auto">
+        <button id="update-button" style="display:flex; margin:0 15px" onclick="updateButton()">Pay</button>
+        <a id="update-button" style="display:flex; margin:0 15px" href="<?!= getScriptUrl()?>?v=payroll">Back</a>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>4Wizards</p>
+      <p>@GoogleHackAPU</p>
+    </div>
+
+    <?!= include('payrollPay-script') ?>
+
+  </body>
+</html>

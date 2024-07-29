@@ -1,0 +1,38 @@
+<script>
+
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var currentTime = new Date();
+document.getElementById("datetime").innerHTML = "Today is " + currentTime.getDate() + " " + months[currentTime.getMonth()] + " " + currentTime.getFullYear();
+
+if(currentTime.getDate() - 25 == 0){
+  document.getElementById("dateleft").innerHTML = "Today is Payday";
+}
+else if(currentTime.getDate() - 25 < 0){
+  document.getElementById("dayleft").innerHTML = (25 - currentTime.getDate()) + " more day(s) till Payday";
+}
+else{
+  document.getElementById("dayleft").innerHTML = "Remember to complete payroll by the end of the month";
+}
+
+google.script.run.withSuccessHandler(displayEmployeeData).generateEmployeePayslip(employeeName);
+
+// Extract employee name from URL and fetch data
+document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const employeeName = urlParams.get('employeeName');
+      if (employeeName) {
+        getEmployeeData(employeeName);
+      }
+    });
+
+
+    
+
+     // Function to display employee data
+    function displayEmployeeData(html) {
+      document.getElementById('employee-info-container').innerHTML = html;
+    }
+
+
+
+</script>

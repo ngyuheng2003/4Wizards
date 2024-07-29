@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include('home-css') ?>
+    <?!= include('payroll2-css') ?>
+ <body style="justify-content: center; padding: 0; min-height: 100vh;">
+    <nav>
+        <div class="logo">
+            Finance Wizards
+        </div>
+        <div class="menu">
+            <a href="<?!= getScriptUrl()?>?v=index">Home</a>
+            <a href="<?!= getScriptUrl()?>?v=pp">Procurement</a>
+            <a href="<?!= getScriptUrl()?>?v=inventory">Inventory</a>
+            <a href="<?!= getScriptUrl()?>?v=invoices">Invoices</a>
+            <a href="<?!= getScriptUrl()?>?v=payroll">Payroll</a>
+            <a href="<?!= getScriptUrl()?>?v=profile">Profile</a>
+        </div>
+    </nav>
+    <div class="home-info" style="background-color: antiquewhite;">
+        <div>
+            <h2 id="datetime">Today is N/A</h2>
+            <p id="dayleft">N/A more days till Payday</p>
+        </div>
+    </div>
+    <h2 style="margin: 50px 50px 0 50px;">Add New Employee</h2>
+    
+    <div style="display:flex; margin:0 auto; flex-direction: column;">
+      <form id="payrollForm",method= "post">
+        <div class="field">
+          <label for="employmentType">Employment Type:</label>
+          <select id="employmentType" name="employmentType" required>
+            <option value="Permanent" selected>Permanent</option>
+            <option value="Part Time">Part Time</option>
+          </select>
+        </div>
+
+        <!-- Permanent Fields -->
+        <div id="permanentFields">
+          <div class="field">
+            <label for="employeeID">Employee ID:</label>
+            <input type="text" id="employeeID" name="employeeID" required>
+          </div>
+          <div class="field">
+            <label for="employeeName">Employee Name:</label>
+            <input type="text" id="employeeName" name="employeeName" required>
+          </div>
+          <div class="field">
+          <label for="status">Status:</label>
+          <select id="status" name="status" required>
+            <option value="Malaysian">Malaysian</option>
+            <option value="Permanent Resident">Permanent Resident</option>
+            <option value="Non-Malaysian">Non-Malaysian</option>
+          </select>
+        </div>
+          <div class="field">
+            <label for="ic">NRIC:</label>
+            <input type="text" id="ic" name="ic" required>
+          </div>
+          <div class="field">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+          </div>
+          <div class="field">
+            <label for="yearJoined">Year Joined Company:</label>
+            <input type="number" id="yearJoined" name="yearJoined" min="1900" max="2100" required>
+          </div>
+          <div class="field">
+            <label for="position">Position:</label>
+            <input type="text" id="position" name="position" required>
+          </div>
+          <div class="field">
+            <label for="basicSalary">Basic Salary:</label>
+            <input type="number" id="basicSalary" name="basicSalary" step="0.01" required>
+          </div>
+          <div class="field">
+            <label for="allowances">Allowances:</label>
+            <input type="number" id="allowances" name="allowances" step="0.01" required>
+          </div>
+          <div class="field">
+            <label for="epfNo">EPF No:</label>
+            <input type="text" id="epfNo" name="epfNo" required>
+          </div>
+          <div class="field">
+            <label for="socsoNo">SOCSO No:</label>
+            <input type="text" id="socsoNo" name="socsoNo" required>
+          </div>
+          <div class="field">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="field">
+            <label for="bank">Bank:</label>
+            <input type="text" id="bank" name="bank" required>
+          </div>
+          <div class="field">
+            <label for="acc">Bank Account Number:</label>
+            <input type="text" id="acc" name="acc" required>
+          </div>
+        </div>
+
+        <!-- Part-Time Fields -->
+        <div id="partTimeFields" style="display:none;">
+          <div class="field">
+            <label for="pt_employeeName">Employee Name:</label>
+            <input type="text" id="pt_employeeName" name="pt_employeeName" required>
+          </div>
+          <div class="field">
+            <label for="pt_ic">NRIC:</label>
+            <input type="text" id="pt_ic" name="pt_ic" required>
+          </div>
+          <div class="field">
+            <label for="pt_position">Position:</label>
+            <input type="text" id="pt_position" name="pt_position" required>
+          </div>
+          <div class="field">
+            <label for="pt_email">Email:</label>
+            <input type="email" id="pt_email" name="pt_email" required>
+          </div>
+          <div class="field">
+            <label for="pt_bank">Bank:</label>
+            <input type="text" id="pt_bank" name="pt_bank" required>
+          </div>
+          <div class="field">
+            <label for="pt_acc">Bank Account Number:</label>
+            <input type="text" id="pt_acc" name="pt_acc" required>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+    <div style="display:flex; margin: 50px;">
+      <div style="display:flex; margin:0 auto;">
+        <button id="update-button" style="display:flex; margin:0 15px" onclick="addEmployee()">Add</button>
+        <a id="update-button" style="display:flex; margin:0 15px" href="<?!= getScriptUrl()?>?v=payroll">Back</a>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>4Wizards</p>
+      <p>@GoogleHackAPU</p>
+    </div>
+
+    <?!= include('payroll2-script') ?>
+
+    
+</body>
+</html>

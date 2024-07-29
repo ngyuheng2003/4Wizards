@@ -1,0 +1,102 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetchInventoryItems();
+    });
+
+    function fetchInventoryItems() {
+        google.script.run.withSuccessHandler(populateItemOptions).getInventoryItems();
+    }
+
+    function populateItemOptions(items) {
+        const itemSelect = document.getElementById('itemSelect');
+        items.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item.name;
+            option.text = item.name;
+            option.dataset.productID = item.productID; // Add productID as data attribute
+            itemSelect.appendChild(option);
+        });
+    }
+
+    function populateItemDetails() {
+        const selectedItem = document.getElementById('itemSelect').selectedOptions[0];
+        const productID = selectedItem.dataset.productID || '';
+        document.getElementById('productID').value = productID;
+    }
+
+    function addItem() {
+        const itemSelect = document.getElementById('itemSelect').value;
+        const newItem = document.getElementById('newItem').value;
+        const item = newItem ? newItem : itemSelect;
+        const quantity = document.getElementById('quantity').value;
+        const unitPrice = document.getElementById('unitprice').value;
+
+        if (!item || !quantity || !unitPrice) {
+            alert('Please fill in all fields.');
+            return;
+        }
+
+        const table = document.getElementById('ItemRequestTable').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow(table.rows.length - 1);
+
+        const productID = newItem ? '' : document.getElementById('itemSelect').selectedOptions[0].dataset.productID;
+        const itemIdCell = newRow.insertCell(0);
+        const itemCell = newRow.insertCell(1);
+        const unitPriceCell = newRow.insertCell(2);
+        const quantityCell = newRow.insertCell(3);
+        const totalCell = newRow.insertCell(4);
+        const actionCell = newRow.insertCell(5);
+
+        itemIdCell.textContent = productID;
+        itemCell.textContent = item;
+        unitPriceCell.textContent = unitPrice;
+        quantityCell.textContent = quantity;
+        totalCell.textContent = (quantity * unitPrice).toFixed(2);
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.className = 'button';
+        deleteButton.onclick = function() {
+            table.deleteRow(newRow.rowIndex);
+            updateTotalAmount();
+        };
+        actionCell.appendChild(deleteButton);
+
+        // Update total amount
+        updateTotalAmount();
+    }
+
+    function updateTotalAmount() {
+        const table = document.getElementById('ItemRequestTable').getElementsByTagName('tbody')[0];
+        let total = 0;
+        for (let i = 1; i < table.rows.length - 1; i++) {
+            total += parseFloat(table.rows[i].cells[4].textContent);
+        }
+        table.rows[table.rows.length - 1].cells[1].textContent = total.toFixed(2);
+    }
+
+    function submitProcurementPlan() {
+        const procurementPlan = {
+            name: document.getElementsByName('name')[0].value,
+            department: document.getElementsByName('department')[0].value,
+            plan: document.getElementsByName('plan')[0].value,
+            urgency: document.getElementsByName('urgency')[0].value,
+            items: []
+        };
+
+        const table = document.getElementById('ItemRequestTable').getElementsByTagName('tbody')[0];
+        for (let i = 1; i < table.rows.length - 1; i++) {
+            const item = {
+                item: table.rows[i].cells[1].textContent,
+                quantity: table.rows[i].cells[3].textContent,
+                unitPrice: table.rows[i].cells[2].textContent,
+                totalCost: table.rows[i].cells[4].textContent
+            };
+            procurementPlan.items.push(item);
+        }
+
+        google.script.run.withSuccessHandler(() => {
+            google.script.run.updateRequestStatus('Pending'); // Call to update the status
+        }).storeProcurementPlan(procurementPlan);
+    }
+</script>

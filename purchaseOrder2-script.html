@@ -1,0 +1,33 @@
+<script>
+  // Function to populate the table
+  function populateTable(approvedDetails) {
+    const tableBody = document.getElementById('product-table-body');
+    tableBody.innerHTML = ''; // Clear any existing content
+    let totalAmount = 0;
+
+    approvedDetails.items.forEach(item => {
+      const row = document.createElement('tr');
+
+      row.innerHTML = `
+        <td>${item.productName}</td>
+        <td>${item.unitPrice.toFixed(2)}</td>
+        <td>${item.quantity}</td>
+        <td>${item.totalCost.toFixed(2)}</td>
+      `;
+
+      totalAmount += parseFloat(item.totalCost);
+      tableBody.appendChild(row);
+    });
+
+    document.getElementById('total-amount').textContent = totalAmount.toFixed(2);
+  }
+
+  // Fetch data from server-side script and populate the table
+  function fetchApprovedDetails() {
+    google.script.run.withSuccessHandler(populateTable).getApprovedDetails(localStorage.getItem('approvals_id'));
+    document.getElementById("approvals_id").value = localStorage.getItem('approvals_id');
+  }
+
+  // Call the function to populate the table on page load
+  window.onload = fetchApprovedDetails;
+</script>

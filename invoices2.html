@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include('home-css') ?>
+    <?!= include('invoices2-css') ?>
+  </head>
+  <body style="justify-content: center; padding: 0; min-height: 100vh;">
+    <nav>
+        <div class="logo">
+            Finance Wizards
+        </div>
+        <div class="menu">
+            <a href="<?!= getScriptUrl()?>?v=index">Home</a>
+            <a href="<?!= getScriptUrl()?>?v=pp">Procurement</a>
+            <a href="<?!= getScriptUrl()?>?v=inventory">Inventory</a>
+            <a href="<?!= getScriptUrl()?>?v=invoices">Invoices</a>
+            <a href="<?!= getScriptUrl()?>?v=payroll">Payroll</a>
+            <a href="<?!= getScriptUrl()?>?v=profile">Profile</a>
+        </div>
+    </nav>
+    <div class="home-info" style="background-color: antiquewhite;">
+        <div>
+            <h2 id="datetime">Today is N/A</h2>
+            <p id="dayleft">N/A more days till Payday</p>
+        </div>
+    </div>
+    <h2 style="margin: 50px 50px 0 50px;">Create New Invoice</h2>
+    
+    <div style="display:flex; margin:0 auto;">
+      <form id="stripe-login">
+        <h3 style="margin: 50px 0px 0px 0px; ">Company / Buyer information</h3>
+        <div class="field" style="margin: 20px 0px 0 0px;padding-bottom: 24px; display:inline-block; width: 100%;">
+          <div style="width:100%;">
+            <label for="name">Company / Buyer Name</label>
+            <input type="text" name="name">
+          </div>
+          <div style="display:flex;">
+            <div style="width:100%;">
+              <label for="email">Email</label>
+              <input type="email" name="email">
+            </div>
+            <div style="width:100px"></div>
+            <div style="width:100%;">
+              <label for="contact">Contact</label>
+              <input type="text" name="contact">
+            </div>
+          </div>
+        </div>
+        <h3 style="margin: 25px 0px 10px 0px;">Shipping address</h3>
+        <div class="field" style="margin: 20px 0px 0 0px;padding-bottom: 24px; display:inline-block; width: 100%;">
+          <div>
+            <label for="address">Address</label>
+            <input type="text" name="address">
+          </div>
+          <div style="display:flex;">
+            <div style="width:100%;">
+              <label for="city">City</label>
+              <input type="text" name="city">
+            </div>
+            <div style="width:100px"></div>
+            <div style="width:100%;">
+              <label for="postcode">Postcode</label>
+              <input type="text" name="postcode">
+            </div>
+          </div>
+          <div style="display:flex;">
+            <div style="width:100%;">
+              <label for="province">Province</label>
+              <select name="province">
+                <option>NOT SELECTED</option>
+                <?!= getProvinceOption() ?>
+              </select>
+            </div>
+            <div style="width:100px"></div>
+            <div style="width:100%;">
+              <label for="country">Country</label>
+              <select name="country">
+                <option>NOT SELECTED</option>
+                <option>MALAYSIA</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <h3 style="margin: 25px 0px 10px 0px;">Billing address</h3>
+        <div class="field" style="margin: 20px 0px 0 0px;padding-bottom: 24px; display:inline-block;width: 100%;">
+          <div class="field field-checkbox" style="padding-bottom: 24px; display: flex; align-items: center;">
+            <label for="checkbox">
+              <input type="checkbox" name="checkbox"> Same as shipping address
+            </label>
+          </div>
+          <div>
+            <label for="address">Address</label>
+            <input type="text" name="address">
+          </div>
+          <div style="display:flex;">
+            <div style="width:100%;">
+              <label for="address">City</label>
+              <input type="text" name="address">
+            </div>
+            <div style="width:100px"></div>
+            <div style="width:100%;">
+              <label for="address">Postcode</label>
+              <input type="text" name="address">
+            </div>
+          </div>
+          <div style="display:flex;">
+            <div style="width:100%;">
+              <label for="address">Province</label>
+              <select name="address">
+                <option>NOT SELECTED</option>
+                <?!= getProvinceOption() ?>
+              </select>
+            </div>
+            <div style="width:100px"></div>
+            <div style="width:100%;">
+              <label for="address">Country</label>
+              <select name="address">
+                <option>NOT SELECTED</option>
+                <option>MALAYSIA</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="field field-checkbox" style="padding-bottom: 24px; display: flex; align-items: center;margin-top: 25px">
+            <label for="checkbox">
+              <input type="checkbox" name="checkbox"> Save company / buyer information for future uses
+            </label>
+          </div>
+      </form>
+      
+    </div>
+
+    <div style="display:flex; margin: 50px">
+        <div style="display:flex; margin:0 auto">
+          <a id="update-button" style="display:flex; margin:0 15px" href="<?!= getScriptUrl()?>?v=new-invoice-2">Next</a>
+          <a id="update-button" style="display:flex; margin:0 15px" href="<?!= getScriptUrl()?>?v=invoices">Back</a>
+        </div>
+      </div>
+    <div class="footer">
+        <p>4Wizards</p>
+        <p>@GoogleHackAPU</p>
+    </div>
+
+    <?!= include('payroll-script') ?>
+</body>
+</html>

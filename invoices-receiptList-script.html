@@ -1,0 +1,40 @@
+<script>
+
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var currentTime = new Date();
+document.getElementById("datetime").innerHTML = "Today is " + currentTime.getDate() + " " + months[currentTime.getMonth()] + " " + currentTime.getFullYear();
+
+if(currentTime.getDate() - 25 == 0){
+  document.getElementById("dateleft").innerHTML = "Today is Payday";
+}
+else if(currentTime.getDate() - 25 < 0){
+  document.getElementById("dayleft").innerHTML = (25 - currentTime.getDate()) + " more day(s) till Payday";
+}
+else{
+  document.getElementById("dayleft").innerHTML = "Remember to complete payroll by the end of the month";
+}
+
+
+document.getElementById("invoice_id").innerHTML = "Invoice (" + localStorage.getItem("invoice_id") + ")";
+
+
+
+google.script.run.withSuccessHandler(loadTable).generateReceiptTable(localStorage.getItem("invoice_id"));
+
+function loadTable(html){
+  document.getElementById("receipt-info").innerHTML = html;
+}
+
+
+function nextDetailPage(button){
+  let row = button.parentNode.parentNode;
+  localStorage.setItem('receipt_id', row.cells[0].innerHTML);
+  google.script.run.withSuccessHandler(nextInvoicePage).getScriptUrl();
+}
+
+function nextInvoicePage(value){
+  let url = value + "?v=receipt";
+  open(url, "_top");
+}
+
+</script>

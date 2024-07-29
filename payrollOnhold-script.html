@@ -1,0 +1,52 @@
+<script>
+
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var currentTime = new Date();
+document.getElementById("datetime").innerHTML = "Today is " + currentTime.getDate() + " " + months[currentTime.getMonth()] + " " + currentTime.getFullYear();
+
+
+
+if(25- currentTime.getDate()  == '0'){
+  document.getElementById("dateleft").innerHTML = "Today is Payday";
+}
+else if(currentTime.getDate() - 25 < 0){
+  document.getElementById("dayleft").innerHTML = (25 - currentTime.getDate()) + " more day(s) till Payday";
+}
+else{
+  document.getElementById("dayleft").innerHTML = "Remember to complete payroll by the end of the month";
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    urlParams = new URLSearchParams(window.location.search);
+    employeeName = urlParams.get('employeeName'); // Initialize the variable here
+    if (employeeName) {
+      getEmployeeData(employeeName);
+    }
+  });
+
+  
+
+  function updateButton() {
+    const form = document.getElementById('ptForm');
+    const formData = new FormData(form);
+    const data = {};
+    formData.forEach((value, key) => { data[key] = value; });
+
+    google.script.run.withSuccessHandler(function(response) {
+      if (response === 'Data successfully added!') {
+        alert('Payment is made!');
+        form.reset();
+      } else {
+        alert(response);
+      }
+    }).withFailureHandler(function(error) {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again.');
+    }).processWorkingHours(data);
+  }
+
+  
+
+
+</script>

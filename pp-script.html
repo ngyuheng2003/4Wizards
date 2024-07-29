@@ -1,0 +1,40 @@
+<script>
+    function loadRequests() {
+      google.script.run.withSuccessHandler(function(data) {
+        var table = document.getElementById('procurementPlanTable').getElementsByTagName('tbody')[0];
+        table.innerHTML = ''; // Clear existing rows
+        data.forEach(function(row) {
+          var newRow = table.insertRow();
+          row.forEach(function(cell, index) {
+            var newCell = newRow.insertCell();
+            if (index === 0) { 
+              var link = document.createElement('a');
+              link.href = "/procurementdetails.html?id=" + row[0]; // Adjust URL based on your setup
+              link.textContent = cell;
+              newCell.appendChild(link);
+            } else {
+              newCell.textContent = cell;
+            }
+          });
+        });
+      }).getRequests();
+    }
+
+    function submitForm() {
+      var formData = {
+        name: document.getElementById('name').value,
+        department: document.getElementById('department').value,
+        plan: document.getElementById('plan').value,
+        justification: document.getElementById('justification').value,
+        urgency: document.getElementById('urgency').value
+      };
+
+      google.script.run.withSuccessHandler(function() {
+        alert('Request submitted successfully!');
+        loadRequests();
+      }).submitProcurementRequest(formData);
+    }
+
+    // Load requests on page load
+    window.onload = loadRequests;
+  </script>

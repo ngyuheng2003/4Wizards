@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base target="_top">
+  <?!= include('home-css') ?>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<body style="justify-content: center; padding: 0; min-height: 100vh;">
+  <nav>
+    <div class="logo">
+      Finance Wizards
+    </div>
+    <div class="menu">
+      <a href="<?!= getScriptUrl()?>?v=index">Home</a>
+      <a href="<?!= getScriptUrl()?>?v=pp">Procurement</a>
+      <a href="<?!= getScriptUrl()?>?v=inventory">Inventory</a>
+      <a href="<?!= getScriptUrl()?>?v=invoices">Invoices</a>
+      <a href="<?!= getScriptUrl()?>?v=payroll">Payroll</a>
+      <a href="<?!= getScriptUrl()?>?v=profile">Profile</a>
+    </div>
+  </nav>
+  <div class="home-info" style="background-color: antiquewhite;">
+    <div>
+      <h2 id="datetime">Today is N/A</h2>
+      <p id="dayleft">N/A more days till Payday</p>
+    </div>
+    <div>
+      <a href="<?!= getScriptUrl()?>?v=payroll" id="payroll-button">Check details</a>
+    </div>
+  </div>
+  <div class="welcome-box"
+    style="background-image: url(https://drive.google.com/thumbnail?id=1l3eJ1MdhIG4cC2PfxjPn5jh_Dt6r_IfN&sz=w3000);">
+    <h1>Welcome back,</h1>
+    <h1>User</h1>
+  </div>
+  <div class="home-info-2">
+    <div>
+      <h2 id="profitMonth">
+        Profit for MONTH
+      </h2>
+      <p id="update_date" style="font-size: 16px;">
+        Updated till N/A
+      </p>
+    </div>
+
+    <h2 id="profit" style="color: green;">RM
+      <?!= getTotalProfitMonth() ?>
+    </h2>
+  </div>
+  <div
+    style="justify-content: space-between; display: flex; align-content: center; max-width: 1500px; margin: 0 auto 50px auto;">
+    <div id="chart_area" style="height:400px; align-content:center">Loading data... Please wait
+
+    </div>
+
+  </div>
+  <div class="footer">
+    <p>4Wizards</p>
+    <p>@GoogleHackAPU</p>
+  </div>
+
+  <?!= include('payday-cd-script') ?>
+  <?!= include('home-script') ?>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <?!= include('home-css') ?>
+  <?!= include('poTable-css') ?>
+</head>
+<body style="justify-content: center; padding: 0; min-height: 100vh;">
+  <nav>
+    <div class="logo">Finance Wizards</div>
+    <div class="menu">
+      <a href="<?!= getScriptUrl()?>?v=index">Home</a>
+      <a href="<?!= getScriptUrl()?>?v=pp">Procurement</a>
+      <a href="<?!= getScriptUrl()?>?v=inventory">Inventory</a>
+      <a href="<?!= getScriptUrl()?>?v=invoices">Invoices</a>
+      <a href="<?!= getScriptUrl()?>?v=payroll">Payroll</a>
+      <a href="<?!= getScriptUrl()?>?v=profile">Profile</a>
+    </div>
+  </nav>
+  <div class="home-info" style="background-color: antiquewhite;">
+    <div>
+      <h2 id="datetime">Today is N/A</h2>
+      <p id="dayleft">N/A more days till Payday</p>
+    </div>
+  </div>
+  <h1 style="margin: 50px 50px 0 50px;">Purchase Orders</h1>
+  
+  <div>
+      <table id="generatePurchaseOrderTable">
+        <thead>
+          <tr>				
+            <th>PO ID</th>
+            <th>Purchase Date</th>
+            <th>Supplier ID</th>
+            <th>Total Payment</th>
+            <th>Payment Status</th>
+            <th>Delivery Status</th>
+            <th>Expected Date Received</th>
+          </tr>
+        </thead>
+        <tbody id="employee-info">
+          <?!= generatePurchaseOrderTable() ?>
+        </tbody>
+      </table>
+  </div>
+  
+  <div class="footer">
+    <p>4Wizards</p>
+    <p>@GoogleHackAPU</p>
+  </div>
+</body>
+</html>
