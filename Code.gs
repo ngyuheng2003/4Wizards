@@ -298,7 +298,7 @@ function getAddress(data){
 
 // Generate table
 function generateTable(id, name, type, index, e, col, features){
-  let jsonData = getSheetData(id, name, type, index, e);
+  let jsonData = getSheetData2(id, name, type, index, e);
 
   let tags = "";
   if(jsonData.length == 0){
