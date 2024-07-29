@@ -1868,7 +1868,13 @@ html += `
       <button class="button" id="confirmButton">Confirm</button>
     </div>
   </div>
-
+  <div class="footer">
+    <p>4Wizards</p>
+    <p>@GoogleHackAPU</p>
+  </div>
+  ` +
+  include('payday-cd-script')
+  + `
   <script>
   const modal = document.getElementById("approvalModal");
   const span = document.getElementsByClassName("close")[0];

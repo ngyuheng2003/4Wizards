@@ -1,8 +1,5 @@
 <script>
-
-
-
-
+  
 google.script.run.withSuccessHandler(printInvoiceInfo).getInvoicesInfo(localStorage.getItem('invoice_id'));
 google.script.run.withSuccessHandler(printPaymentInfo).getPaymentInfo(localStorage.getItem('receipt_id'));
 google.script.run.withSuccessHandler(printReceiptPreview).getReceiptPreview(localStorage.getItem('receipt_id'));
