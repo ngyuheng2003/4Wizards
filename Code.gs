@@ -584,7 +584,7 @@ function updatePaymentInfo(form){
   // add info to sheets
   let data_array = [receipt_id, form.invoice_id, form.company_name, form.payment_date, form.payment_method, form.type_of_payment, form.reference_id, form.amount, form.remarks];
 
-  getSheet().appendRow(data_array);
+  receiptInfo.appendRow(data_array);
   
   for(let i = 1; i < data2.length; i++){
     if(data2[i][0] == form.invoice_id){
